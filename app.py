@@ -17,7 +17,7 @@ class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True) # Creates an integer column, which is also the primary key
     task = db.Column(db.String(300), unique=True) # Creates a string column
     complete = db.Column(db.Boolean, default=False) # Creating a way to complete a task, initially set to false
-    date_created = db.Column(db.DateTime, default=datetime.now) #Addng a datetime column. datetime is imported
+    date_created = db.Column(db.DateTime, default=datetime.now) #Addng a datetime column. datetime is imported. This part I used ChatGPT
    
 
 @app.route("/")
