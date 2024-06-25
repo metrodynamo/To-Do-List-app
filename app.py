@@ -1,13 +1,13 @@
 
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from zoneinfo import ZoneInfo
 from datetime import datetime
 
 # new instance of the Flask class
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'  # Assigns the right to the left
 db = SQLAlchemy(app)  # Create an instance of SQLAlchemy and call it app
-
 
 # db.Model is inheritance (comes from SQLAlchemy). It doesn't need any self or def init properties as this is written into the db.Model code
 # Column, an integer and the primary key
@@ -17,7 +17,7 @@ class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True) # Creates an integer column, which is also the primary key
     task = db.Column(db.String(300), unique=True) # Creates a string column
     complete = db.Column(db.Boolean, default=False) # Creating a way to complete a task, initially set to false
-    date_created = db.Column(db.DateTime, default=datetime.now) #Addng a datetime column. datetime is imported. This part I used ChatGPT
+    date_created = db.Column(db.DateTime, default=lambda: datetime.now(ZoneInfo("Europe/London"))) # Addng a datetime column. datetime is imported. This part I used ChatGPT. Had to change it because it was an hour behind. I had to import ZoneInfo and install 'tzdata' to get it to work.
    
 
 @app.route("/")
