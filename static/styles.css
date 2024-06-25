@@ -1,0 +1,18 @@
+
+  body {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color:azure;
+}
+
+  .complete {
+    color: blue;
+    text-decoration: none;
+    
+  }
+
+  .incomplete {
+    color: red;
+    text-decoration: none;
+
+    
+  }

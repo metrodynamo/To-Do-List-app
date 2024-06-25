@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Todo App</title>
+</head>
+<body>
+    <div>
+        <h1>To Do List</h1>
+
+        <form action="/add" method="post">
+            <div>
+                <label>Todo task</label>
+                <input type="text" name="task" placeholder="Enter a Task">
+                <button type="submit">Add a Task</button>
+            </div>
+        </form>
+<!-- The above inserts a form which the user is able to enter information -->
+        <hr>
+
+        {# Below : runs a for loop for the todo list. At this point, it also assigns a date and time (in the 'created part')#}
+        {# If the task is NOT complete the 'mark as complete' will show up, otherwise, it will show 'mark as incomplete'. This allows the user to toggle between them. #}
+
+        {% for todo in todo_list %}
+        <div>
+            <p>Task: {{ todo.task }}</p>
+            <p>Created: {{ todo.date_created.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+            
+            {% if not todo.complete %}
+                <p>Status: Incomplete <a class="complete" href="/update/{{ todo.id }}">Mark as complete &#x2713;</a></p>
+            {% else %}
+                <p>Status: Complete <a class ="incomplete" href="/update/{{ todo.id }}">Mark as incomplete &#x292B;</a></p>
+            {% endif %}
+        </div>
+            <p><a href="/delete/{{ todo.id }}">Delete this task</a></p>
+     
+        {% endfor %}
+
+        </hr>
+    </div>
+</body>
+</html>
