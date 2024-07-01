@@ -26,8 +26,9 @@
         {% for todo in todo_list %}
         <div>
             <p>Task: {{ todo.task }}</p>
-            <p>Created: {{ todo.date_created.strftime('%Y-%m-%d %H:%M:%S') }}</p>
-            
+            <p>Created: {{ todo.date_created.strftime('%d-%m-%Y %H:%M') }}</p>
+            <!-- Originally, this showed up as Year, Month, Day, which is American. I have switched these. strftime allows us to strip away parts of the time (for example: I have removed seconds). This part I learned from a YT video. https://www.youtube.com/watch?v=45P3xQPaYxc&t=707s
+             -->
             {% if not todo.complete %}
                 <p>Status: Incomplete <a class="complete" href="/update/{{ todo.id }}">Mark as complete &#x2713;</a></p>
             {% else %}

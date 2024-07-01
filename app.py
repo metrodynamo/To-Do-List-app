@@ -17,7 +17,7 @@ class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True) # Creates an integer column, which is also the primary key
     task = db.Column(db.String(300), unique=True) # Creates a string column
     complete = db.Column(db.Boolean, default=False) # Creating a way to complete a task, initially set to false
-    date_created = db.Column(db.DateTime, default=lambda: datetime.now(ZoneInfo("Europe/London"))) # Addng a datetime column. datetime is imported. This part I used ChatGPT. Had to change it because it was an hour behind. I had to import ZoneInfo and install 'tzdata' to get it to work.
+    date_created = db.Column(db.DateTime, default=lambda: datetime.now(ZoneInfo("Europe/London"))) # Addng a datetime column. datetime is imported. This part I used ChatGPT. Had to change it because it was an hour behind. I had to import ZoneInfo and install 'tzdata' to get it to work. The original syntax of 'utcnow' is depreciated and when I looked online for other ways to do it, none of them worked.
    
 
 @app.route("/")
